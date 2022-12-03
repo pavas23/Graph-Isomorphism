@@ -10,7 +10,8 @@
 
 ### Input
 > The first line of the input would be an integer n - the number of nodes.
-> Second line of the input would be an integer e - the number of edges The next e lines contain a pair x and y ( 1≤ x,y ≤ n and x ≠ y) , to indicate that > there is an edge between nodes numbered x and y.
+> Second line of the input would be an integer e - the number of edges The next e lines contain a pair x and y ( 1≤ x,y ≤ n and x ≠ y) , to indicate that
+> there is an edge between nodes numbered x and y.
 
 ### Output
 > Output the degree sequence in non-increasing order. Output should be printed in standard output.
