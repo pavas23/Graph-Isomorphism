@@ -8,6 +8,7 @@ Team Members:
 
 #include <stdio.h>
 #include <stdlib.h>
+#include<string.h>
 
 void sortArrayInDescendingOrder(int* arr,int n){
     int temp=0;
@@ -30,6 +31,9 @@ int main(int argc, char* argv[]){
 
     // opening the file using FILE pointer in read mode
     fp=fopen(argv[1],"r");
+
+    // for finding the name of file
+    char fileSuffix = argv[1][7];
 
     // if file is not found
     if(fp == NULL){
@@ -75,8 +79,23 @@ int main(int argc, char* argv[]){
     // closing the input file
     fclose(fp);
 
+    // for finding the new name of file
+    char fileName[] = "./Test/output.txt";
+    char newFileName[30];
+
+    for(int i=0;i<10;i++){
+        *(newFileName+i) = fileName[i];
+    }
+
+    *(newFileName+10) = '-';
+    *(newFileName+11) = fileSuffix;
+
+    for(int i = 12;i<16;i++){
+        *(newFileName+i) = fileName[i+1];
+    }
+
     // will modify the existing file output.txt in Test folder, if not there it will create a new file
-    fp=fopen("./Test/output.txt","w+");
+    fp=fopen(newFileName,"w+");
 
     printf("\nThe degree sequence is:\n");
     fprintf(fp,"The degree sequence is:\n");
