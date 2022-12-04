@@ -1,4 +1,5 @@
 
+
 ## Graph-Isomorphism
 
 2-1, CS-F222, Discrete Structures for CS Assignment. We have to report if two ```undirected graphs``` are ```isomorphic``` or not.
@@ -16,3 +17,12 @@
 ### Output
 > Output the degree sequence in non-increasing order. Output should be printed in standard output.
 
+
+## Installation
+
+```bash
+gcc Main.c
+./a.out ./Test/a.txt
+```
+``` It will create output.txt file in Test directory```
+    
