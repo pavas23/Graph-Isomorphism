@@ -59,9 +59,10 @@ int main(int argc, char* argv[]){
     }
 
     // array for storing the degree sequence
+    int cnt = 0;
     int degSequence[n];
     for (int i=0;i<n;i++){
-        int cnt=0;
+        cnt=0;
         for (int j=0;j<n;j++){
             cnt+=adjMat[i][j];
         }

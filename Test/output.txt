@@ -1,2 +1,1 @@
 The degree sequence is:
-3 3 2 2 2 
