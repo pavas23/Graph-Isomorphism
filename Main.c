@@ -9,6 +9,19 @@ Team Members:
 #include <stdio.h>
 #include <stdlib.h>
 
+void sortArrayInDescendingOrder(int* arr,int n){
+    int temp=0;
+    for (int i=0; i<n; i++){
+        for (int j=i+1;j<n;j++){
+            if (*(arr+i) < *(arr+j)){
+                temp = *(arr+i);
+                *(arr+i) = *(arr+j);
+                *(arr+j) = temp;
+            }
+        }
+    }
+}
+
 int main(int argc, char* argv[]){
 
     // fp is a file pointer
@@ -56,16 +69,7 @@ int main(int argc, char* argv[]){
     }
 
     // sorting the array in descending order
-    int temp;
-    for (i=0; i<n; i++){
-        for (j=i+1;j<n;j++){
-            if (degSequence[i]<degSequence[j]){
-                temp=degSequence[i];
-                degSequence[i]=degSequence[j];
-                degSequence[j] = temp;
-            }
-        }
-    }
+    sortArrayInDescendingOrder(degSequence,n);
 
     // closing the input file
     fclose(fp);
