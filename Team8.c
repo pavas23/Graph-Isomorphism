@@ -1,6 +1,6 @@
 /*
 <------------------------------------------------------------------------------------------------------------>
-Team Number 8
+Team Number: 8
 Team Members:
 1 Pavas Garg 2021A7PS2587H
 2 Saksham Bajaj 2021A7PS1315H
@@ -27,13 +27,13 @@ int main(int argc, char* argv[]){
 
     // fp is a file pointer
     FILE *fp;
-    int n,e;
+    int n=-1,e=-1;
 
     // opening the file using FILE pointer in read mode
     fp=fopen(argv[1],"r");
 
     while (1){
-        
+
         // if file is not found
         if(fp == NULL){
             printf("\nInput File Not Found !\n\n");
@@ -43,28 +43,27 @@ int main(int argc, char* argv[]){
         // reading the number of nodes
         fscanf(fp,"%d",&n);
 
-        
         // if file is empty
-        if(feof(fp)){
+        if(n==-1){
             printf("\nInput File Is Empty!\n\n");
             break;
         }
         
         // if number of nodes are 0
         if(n==0){
-            printf("\nNumber of nodes=0!\n\n");
+            printf("\nNumber of Nodes = 0\n\n");
             break;
         }
 
+        // reading the number of edges
+        fscanf(fp,"%d",&e);
+
         // if number of edges not mentioned
-        if(feof(fp)){
+        if(e==-1){
             printf("\nNumber of Edges Not Mentioned!\n\n");
             break;
         }
         
-        // reading the number of edges
-        fscanf(fp,"%d",&e);
-
         //making an adjacency matrix
         int adjMat[n][n];
 
@@ -102,10 +101,11 @@ int main(int argc, char* argv[]){
         fclose(fp);
 
         printf("\nThe degree sequence is:\n");
+
         for (int i=0;i<n;i++){
             printf("%d ",degSequence[i]);
-            fprintf(fp,"%d ",degSequence[i]);
         }
+
         printf("\n\n");
         break;
     }
