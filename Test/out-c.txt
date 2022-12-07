@@ -1,2 +1,0 @@
-The degree sequence is:
-0 
