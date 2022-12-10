@@ -23,11 +23,11 @@ void sortArrayInDescendingOrder(int* arr,int n){
     }
 }
 
-void swapArrayElemenets(int* x, int* y){
-    int temp; 
-    temp = *x; 
-    *x = *y; 
-    *y = temp;
+void swapArrayElemenets(int x, int y,int *arr){
+    int temp=0; 
+    temp = arr[x]; 
+    arr[x]= arr[y]; 
+    arr[y] = temp;
 }
 
 int compareTwoArrays(int* arr1,int* arr2,int n){
@@ -39,26 +39,26 @@ int compareTwoArrays(int* arr1,int* arr2,int n){
     return 1;
 }
 
-void rotateMatrix(int n,int *array1,int a,int b){
+void rotateMatrix(int n,int **array1,int a,int b){
     for (int i = 0; i < n; ++i){
         int c=0;
-        c = *((array1+(a-1)*n)+i);
-        *((array1+(a-1)*n)+i) = *((array1+(b-1)*n)+i);
-        *((array1+(b-1)*n)+i) = c;
+        c = array1[a-1][i];
+        array1[a-1][i]=array1[b-1][i];
+        array1[b-1][i]= c;
     }
     for (int i = 0; i < n; ++i){
         int c=0;
-        c = *((array1+i*n)+(a-1));
-        *((array1+i*n)+(a-1)) = *((array1+i*n)+(b-1));
-        *((array1+i*n)+(b-1)) = c;
+        c = array1[i][a-1];
+        array1[i][a-1]=array1[i][b-1];
+       array1[i][b-1]= c;
     }
     
 }
 
-int compareTwoMatrices(int* matrix1,int* matrix2,int n){
+int compareTwoMatrices(int** matrix1,int** matrix2,int n){
     for (int i=0;i<n;i++){
         for (int j=0;j<n;j++){
-            if(*((matrix1+i*n)+j)!=*((matrix2+i*n)+j)){
+            if(matrix1[i][j]!=matrix2[i][j]){
                 return 0;
             }
         }
@@ -66,24 +66,34 @@ int compareTwoMatrices(int* matrix1,int* matrix2,int n){
     return 1;
 }
 
-int checkIsopmorphism(int n,int* matrix1,int* matrix2,int* arr,int l){
-    if (compareTwoMatrices((int *)matrix1,(int *)matrix2,n)){
-        return 1;
+int checkIsopmorphism(int n,int** matrix1,int** matrix2,int* arr,int l){
+   
+    
+    if(l==(n-1)){
+        if(compareTwoMatrices(matrix1,matrix2,n)){
+                printf("\nIsomorphism.\n");
+                for (int i=0;i<n;i++){
+                    printf("%d %d\n",i+1,arr[i]);
+                } 
+                return 1;   
+            }
     }
-    else if (l==n-1){
-        return 0;
-    }
+    
     else{
-        for(int i=l;i<=n-1;i++){
-            swapArrayElemenets((arr+l),(arr+i));
-            rotateMatrix(n,(int *)matrix2,l,i);
+        for(int i=l;i<n;i++){
+            swapArrayElemenets(l,i,arr);
+            rotateMatrix(n,matrix2,l+1,i+1);
             
-            checkIsopmorphism(n,(int *)matrix1,(int *)matrix2,arr,l+1);
-
-            swapArrayElemenets((arr+l),(arr+i));
-            rotateMatrix(n,(int *)matrix2,l,i);
+            if(checkIsopmorphism(n,matrix1,matrix2,arr,l+1)==1){
+                return 1;
+            }
+            
+            swapArrayElemenets(l,i,arr);
+            rotateMatrix(n,matrix2,l+1,i+1);
         }
     }
+    return 0;
+
 }
 
 void main(int argc, char* argv[]){
@@ -173,7 +183,21 @@ void main(int argc, char* argv[]){
         }
     
         //making an adjacency matrix
-        int adjMat1[n][n],adjMat2[n][n];
+        int** adjMat1,**adjMat2;
+
+        adjMat1 = (int**) malloc(n*sizeof(int*));
+
+        for(int i=0;i<n;i++){
+            int* temp = (int*)malloc(n*sizeof(int));
+            adjMat1[i] = temp;
+        }
+
+        adjMat2 = (int**) malloc(n*sizeof(int*));
+
+        for(int i=0;i<n;i++){
+            int* temp = (int*)malloc(n*sizeof(int));
+            adjMat2[i] = temp;
+        }
 
         // initialising all the values to zero
         for (int i=0;i<n;i++){
@@ -222,22 +246,18 @@ void main(int argc, char* argv[]){
         fclose(fp2);
 
         // comparing the degree sequences
-        if (compareTwoArrays((int *)degSequence1,(int *)degSequence2,n)){
+        if (compareTwoArrays(degSequence1,degSequence2,n)){
             int bijectionArr[n];
             for (int i=0;i<n;i++){
                 bijectionArr[i]=i+1;
             }
-            if (checkIsopmorphism(n,(int *)adjMat1,(int *)adjMat2,bijectionArr,0)){
-                printf("\nIsomorphism.\n");
-                for (int i=0;i<n;i++){
-                    printf("%d %d\n",i+1,bijectionArr[i]);
-                }
+            if(checkIsopmorphism(n,adjMat1,adjMat2,bijectionArr,0)){
                 break;
             }
             else{
                 printf("\nNot Isomorphic, No Bijection Found\n\n");
                 break;
-            }   
+            }
         }
         else{
             printf("\nNot Isomorphic, No Bijection Found\n\n");
