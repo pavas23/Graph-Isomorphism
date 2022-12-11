@@ -39,18 +39,23 @@ int compareTwoArrays(int* arr1,int* arr2,int n){
     return 1;
 }
 
+// This function will take two index and swap the rows and columns corresponding to that index
 void rotateMatrix(int n,int **array1,int a,int b){
+
+    // for interchanging the rows a and b
     for (int i = 0; i < n;i++){
         int c=0;
         c = array1[a-1][i];
         array1[a-1][i]=array1[b-1][i];
         array1[b-1][i]= c;
     }
+
+    // for interchanging the columns a and b
     for (int i = 0; i < n; ++i){
         int c=0;
         c = array1[i][a-1];
         array1[i][a-1]=array1[i][b-1];
-       array1[i][b-1]= c;
+        array1[i][b-1]= c;
     }
     
 }
@@ -67,8 +72,7 @@ int compareTwoMatrices(int** matrix1,int** matrix2,int n){
 }
 
 int checkIsopmorphism(int n,int** matrix1,int** matrix2,int* arr,int l){
-   
-    
+ 
     if(l==(n-1)){
         if(compareTwoMatrices(matrix1,matrix2,n)){
                 return 1;   
@@ -101,6 +105,7 @@ int main(int argc, char* argv[]){
     // opening the file using FILE pointer in read mode
     fp1=fopen(argv[1],"r");
     fp2=fopen(argv[2],"r");
+
     while (1){
 
         // if file is not found
@@ -181,15 +186,21 @@ int main(int argc, char* argv[]){
         //making an adjacency matrix
         int** adjMat1,**adjMat2;
 
+        // allocating memory to the adjMat1 as it will contain n pointers of datatype int*
         adjMat1 = (int**) malloc(n*sizeof(int*));
-
+        
+        /* allocating memory to adjMat1 as at each index of adjMat1 there is a pointer that
+        will take n*4 bytes of memory */
         for(int i=0;i<n;i++){
             int* temp = (int*)malloc(n*sizeof(int));
             adjMat1[i] = temp;
         }
 
+        // allocating memory to the adjMat2 as it will contain n pointers of datatype int*
         adjMat2 = (int**) malloc(n*sizeof(int*));
-
+        
+        /* allocating memory to adjMat2 as at each index of adjMat2 there is a pointer that
+        will take n*4 bytes of memory */
         for(int i=0;i<n;i++){
             int* temp = (int*)malloc(n*sizeof(int));
             adjMat2[i] = temp;
@@ -248,10 +259,11 @@ int main(int argc, char* argv[]){
                 bijectionArr[i]=i+1;
             }
             if(checkIsopmorphism(n,adjMat1,adjMat2,bijectionArr,0)){
-                printf("\nIsomorphism.\n");
+                printf("\nIsomorphic.\n");
                 for (int i=0;i<n;i++){
                     printf("%d %d\n",i+1,bijectionArr[i]);
                 } 
+                printf("\n\n");
                 break;
             }
             else{
@@ -260,7 +272,7 @@ int main(int argc, char* argv[]){
             }
         }
         else{
-            printf("\nNot Isomorphic, No Bijection Found\n\n");
+            printf("\nNot Isomorphic\n\n");
             exit(0);
         }
     }
