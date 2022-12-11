@@ -21,8 +21,30 @@
 ## Installation
 
 ```bash
-gcc Main.c
-./a.out ./Test/a.txt
+gcc PartA.c
+./a.out ./TestA/a.txt
 ```
-``` It will create output.txt file in Test directory```
+
+## Part B
+
+> Determine if two given input graphs are ```isomorphic``` or not.
+> Check for some ```invariants```, namely you have to check if the number of nodes, number of edges, degree sequence are same for both graphs or not.
+
+### Input
+> The first line of the input would be an integer n - the number of nodes.
+> Second line of the input would be an integer e - the number of edges The next e lines contain a pair x and y ( 1≤ x,y ≤ n and x ≠ y) , to indicate that
+> there is an edge between nodes numbered x and y.
+
+### Output
+> If the graphs come out to isomorphic output “Isomorphic” and also output a bijective mapping of the nodes that preserves adjacency.
+> However, if the graphs turn out to be non isomorphic output “Not Isomorphic, no bijection found.”
+
+## Installation
+
+```bash
+gcc PartB.c
+./a.out ./TestB/a.txt ./TestB/c.txt
+```
+
+
     
