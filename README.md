@@ -45,6 +45,4 @@ gcc PartA.c
 gcc PartB.c
 ./a.out ./TestB/a.txt ./TestB/c.txt
 ```
-
-
-    
+![kFrFV](https://user-images.githubusercontent.com/97559428/206896007-184b1a25-63c5-4642-93cc-1df7b7eaab57.gif)
