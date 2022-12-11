@@ -10,6 +10,7 @@ Team Members:
 #include <stdio.h>
 #include <stdlib.h>
 
+// function to sort the array in descending order
 void sortArrayInDescendingOrder(int* arr,int n){
     int temp=0;
     for (int i=0; i<n; i++){
@@ -23,6 +24,7 @@ void sortArrayInDescendingOrder(int* arr,int n){
     }
 }
 
+// function to swap the elements of the array
 void swapArrayElemenets(int x, int y,int *arr){
     int temp=0; 
     temp = arr[x]; 
@@ -30,6 +32,7 @@ void swapArrayElemenets(int x, int y,int *arr){
     arr[y] = temp;
 }
 
+// will return 1 if two arrays are same otherwise 0
 int compareTwoArrays(int* arr1,int* arr2,int n){
     for (int i=0;i<n;i++){
         if(arr1[i]!=arr2[i]){
@@ -39,7 +42,7 @@ int compareTwoArrays(int* arr1,int* arr2,int n){
     return 1;
 }
 
-// This function will take two index and swap the rows and columns corresponding to that index
+// This function will take two index a,b and swap the rows and columns corresponding to that index
 void rotateMatrix(int n,int **array1,int a,int b){
 
     // for interchanging the rows a and b
@@ -60,6 +63,7 @@ void rotateMatrix(int n,int **array1,int a,int b){
     
 }
 
+// function to compare matrices will return 1 if both are same otherwise 0
 int compareTwoMatrices(int** matrix1,int** matrix2,int n){
     for (int i=0;i<n;i++){
         for (int j=0;j<n;j++){
@@ -71,6 +75,7 @@ int compareTwoMatrices(int** matrix1,int** matrix2,int n){
     return 1;
 }
 
+// will return 1 if two matrices become identical otherwise 0
 int checkIsopmorphism(int n,int** matrix1,int** matrix2,int* arr,int l){
  
     if(l==(n-1)){
@@ -128,7 +133,6 @@ int main(int argc, char* argv[]){
             printf("\nFirst Input File Is Empty!\n\n");
             exit(0);
         }
-
         if(n2==-1){
             printf("\nSecond Input File Is Empty!\n\n");
             exit(0);
@@ -139,7 +143,6 @@ int main(int argc, char* argv[]){
             printf("\nNumber of Nodes of Graph 1 = 0\n\n");
             exit(0);
         }
-
         if(n2==0){
             printf("\nNumber of Nodes of Graph 2 = 0\n\n");
             exit(0);
@@ -162,7 +165,6 @@ int main(int argc, char* argv[]){
             printf("\nNumber of Edges in Graph 1 Not Mentioned!\n\n");
             exit(0);
         }
-
         if(e2==-1){
             printf("\nNumber of Edges in Graph 2 Not Mentioned!\n\n");
             exit(0);
