@@ -71,10 +71,6 @@ int checkIsopmorphism(int n,int** matrix1,int** matrix2,int* arr,int l){
     
     if(l==(n-1)){
         if(compareTwoMatrices(matrix1,matrix2,n)){
-                printf("\nIsomorphism.\n");
-                for (int i=0;i<n;i++){
-                    printf("%d %d\n",i+1,arr[i]);
-                } 
                 return 1;   
             }
     }
@@ -96,7 +92,7 @@ int checkIsopmorphism(int n,int** matrix1,int** matrix2,int* arr,int l){
 
 }
 
-void main(int argc, char* argv[]){
+int main(int argc, char* argv[]){
 
     // fp is a file pointer
     FILE *fp1,*fp2;
@@ -146,7 +142,7 @@ void main(int argc, char* argv[]){
 
         // if number of nodes are different 
         if(n1!=n2){
-            printf("\nNot Isomorphic, No Bijection Found\n\n");
+            printf("\nNot Isomorphic, Number of Nodes Not Equal!\n\n");
             exit(0);
         }
         
@@ -169,7 +165,7 @@ void main(int argc, char* argv[]){
 
         // if number of edges are not equal
         if(e1!=e2){
-            printf("\nNot Isomorphic, No Bijection Found\n\n");
+            printf("\nNot Isomorphic, Number of Edges Not Equal!\n\n");
             exit(0);
         }
 
@@ -252,6 +248,10 @@ void main(int argc, char* argv[]){
                 bijectionArr[i]=i+1;
             }
             if(checkIsopmorphism(n,adjMat1,adjMat2,bijectionArr,0)){
+                printf("\nIsomorphism.\n");
+                for (int i=0;i<n;i++){
+                    printf("%d %d\n",i+1,bijectionArr[i]);
+                } 
                 break;
             }
             else{
@@ -264,4 +264,5 @@ void main(int argc, char* argv[]){
             exit(0);
         }
     }
+    return 0;
 }
