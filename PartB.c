@@ -40,7 +40,7 @@ int compareTwoArrays(int* arr1,int* arr2,int n){
 }
 
 void rotateMatrix(int n,int **array1,int a,int b){
-    for (int i = 0; i < n; ++i){
+    for (int i = 0; i < n;i++){
         int c=0;
         c = array1[a-1][i];
         array1[a-1][i]=array1[b-1][i];
@@ -96,7 +96,7 @@ int checkIsopmorphism(int n,int** matrix1,int** matrix2,int* arr,int l){
 
 }
 
-void main(int argc, char* argv[]){
+int main(int argc, char* argv[]){
 
     // fp is a file pointer
     FILE *fp1,*fp2;
@@ -264,4 +264,5 @@ void main(int argc, char* argv[]){
             exit(0);
         }
     }
+    return 0;
 }
