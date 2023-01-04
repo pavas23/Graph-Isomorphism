@@ -42,8 +42,13 @@ gcc PartA.c
 ## Installation
 
 ```bash
-gcc PartB.c
-./a.out ./TestB/a.txt ./TestB/c.txt
+make
+./run ./TestB/a.txt ./TestB/c.txt
+```
+#### To remove the object and exe files use
+
+```bash
+make clean
 ```
 <br/><br/>
 <p align = "center">
